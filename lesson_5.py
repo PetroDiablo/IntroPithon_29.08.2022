@@ -1,106 +1,92 @@
-# Fifth lesson: knowledge of for loops and enumerate method, string methods: count, strip, upper, lower, capitalize,
-# replace, id() function
+# функция input
+# обработка ошибок
+# тернарный оператор
+# цикл с условием
+# методы строк
 
-#####################################################
-# for loop showcase:
-my_str = "I'm a man. My mane is Volodymyr"
-
-count = 0
-for symbol in my_str:
-    # if symbol.isalpha() and symbol.lower() not in "eyuioa":
-    if symbol == " ":
-        count += 1
-        # print(symbol)
-print(count)
-
-#####################################################
-# some string methods and id() function:
-
-count = my_str.count(' ') + my_str.count('a')
-count_space = my_str.count(' ')
-count_a = my_str.count('a')
-print(count)
-
-my_str = "\n\t "
-print(my_str.isspace())
-
-my_str = "aesdeeeeeee"
-my_str = my_str.strip('ed')
-print(my_str)
-
-my_str = " \t  qwerty@\n@\n"
-# my_str = "aesdeeeeeee"
-
-my_str = my_str.strip()
-print(my_str)
-print("-------")
+value = input("Введи целое число: ")
+try:
+    value = int(value)
+    result = 1 / value
+    print(value, result)
+except (ValueError, TypeError):
+    print("Это не целое число!!!")
+except ZeroDivisionError:
+    print("На ноль делить нельзя!!!")
 
 
-print(id(my_str))
-# new_str = my_str.upper()
-my_str = my_str.lower()
-print(my_str)
-print(id(my_str))
+################ тернарный оператор
 
-my_str = my_str.capitalize()
-print(my_str)
+value = -12
+# #################
+if value >= 0:
+    result = value
+else:
+    result = value * 2
+print(result)
+# #################
+result = value if value >= 0 else value * 2
+print(result)
+# новая_переменная = знач_если_да if условие else знач_если_нет
 
-first_name_1 = "Vova"
-first_name_2 = "VOvA"
-print(first_name_1.upper() == first_name_2.upper())
+########################## цикл с условием
 
-new_str = my_str.replace("man", "woman", 1)
+value = 10
+while value >= 0:
+    print(value)
+    value -= 1
+
+## не очень хорошее решение
+while True:
+    print(value)
+    value -= 1
+    if value < 0:
+        break
+
+# решение под конкретную ситуацию
+do_while = True
+while do_while:
+    print(value)
+    value -= 1
+    if value < 0:
+        do_while = False
+
+
+############################### методы строк
+
+my_str = "qwerty"
+index = 0
+index = -1  # отсчет от конца строки
+symbol = my_str[index]  # получение значения по индексу
+print(symbol)
+
+if index < len(my_str):
+    symbol = my_str[index]  # получение значения по индексу
+    print(symbol)
+
+symbol_count = len(my_str)
+print(symbol_count)
+
+my_str[0] = "Q"  # TypeError: 'str' object does not support item assignment
+
+#   Срезы строк
+my_str = "qwerty"
+new_str = my_str[1:5]  # от - включено, до - исключено
+new_str = my_str[3:]  # от .. и до конца
+new_str = my_str[:-3]  # от начала и до ...
+new_str = my_str[:]
+new_str = my_str[-40:20]
 print(new_str)
 
-#####################################################
-# for loops and enumerate method:
+new_str = "Q" + my_str[1:]
+new_str = my_str[:3] + "R" + my_str[4:]
+print(new_str)
 
-my_str = "qwerty123"
+new_str = my_str[::2]  # 2 - шаг среза. Значения на четных индексах
+new_str = my_str[1::2]  # 2 - шаг среза. Значения на нечетных индексах
+new_str = my_str[::-1]  # разворот строки
+print(new_str)
 
-for symbol in my_str:
-    new_symbol = symbol * 2
-    print(new_symbol)
-
-for symbol in my_str[::2]:
-    new_symbol = symbol * 2
-    print(new_symbol)
-
-for index in range(len(my_str)):
-    if not index % 2 or not index % 3:   # math ))
-        print(index, my_str[index])
-
-index = 13
-print(index % 2 == 0, not index % 2)
-
-for index, symbol in enumerate(my_str):  # enumerate return index and value by this index
-    print(index, symbol)
-
-
-#####################################################
-# a little practice:
-
-input_case = input("Выбери тип операции:\n1 +\n2 -\n3 *\n4 /\n: ")
-
-if input_case in "1234":
-    try:
-        value_1 = float(input("Ведите первое число:"))
-        value_2 = float(input("Ведите второе число:"))
-        if input_case == "1":
-            result = value_1 + value_2
-            sign = '+'
-        elif input_case == "2":
-            result = value_1 - value_2
-            sign = '-'
-        elif input_case == "3":
-            result = value_1 * value_2
-            sign = '*'
-        else:
-            result = value_1 / value_2
-            sign = '/'
-        print(f'{value_1} {sign} {value_2} = {result}')
-    except ZeroDivisionError:
-        print("На ноль делить нельзя")
-    except ValueError:
-        print("Это не число")
-else:
-    print("Вы не выбрали операцию")
+my_str = 'asD'
+if my_str[-1].isupper():  # метод строки
+    print("This is number", my_str)
